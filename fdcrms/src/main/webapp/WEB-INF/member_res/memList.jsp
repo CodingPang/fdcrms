@@ -67,7 +67,7 @@
                 <a href="member/detail?f=edit&memNo=${data.memNo}">修改</a>
                 <a href="member/detail?f=detail&memNo=${data.memNo}">详情</a>
                 <a href="statistical/oneBillByMonth?f=oneBillByMonth&memNo=${data.memNo}">个人月费账单</a>
-<%--                <a href="statistical/oneMemBill?f=year&memNo=${data.memNo}">个人年费账单</a>--%>
+                <a href="statistical/oneBillByYear?f=oneBillByYear&memNo=${data.memNo}">个人年费账单</a>
             </td>
         </tr>
     </c:forEach>
@@ -77,7 +77,10 @@
 
 <hr >
 <a href="${pageContext.request.contextPath}/page/memAdd">新增家庭成员</a> <br>
-<a href="${pageContext.request.contextPath}/bill/list" style="text-align: center">查看消费账单列表</a>
-
+<a href="${pageContext.request.contextPath}/bill/list" style="text-align: center">查看消费账单列表</a> <br>
+<a href="${pageContext.request.contextPath}/statistical/allBillByMonth?f=allBillByMonth">家庭月费账单</a> <br>
+<a href="${pageContext.request.contextPath}/statistical/typeBillByMonth?f=typeBillByMonth">家庭各项支出月费总账单</a> <br>
+<a href="${pageContext.request.contextPath}/statistical/allBillByYear?f=allBillByYear">家庭年费总账单</a> <br>
+<a href="${pageContext.request.contextPath}/statistical/typeBillByYear?f=typeBillByYear">家庭各项支出年费总账单</a> <br>
 </body>
 </html>

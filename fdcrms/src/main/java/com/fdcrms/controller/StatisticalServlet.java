@@ -35,6 +35,120 @@ public class StatisticalServlet extends HttpServlet {
             doOneBillByMonth(request, response, statisticalService, map);
         } else if ("/allBillByMonth".equals(path)){
             doAllBillByMonth(request, response, statisticalService, map);
+        } else if ("/typeBillByMonth".equals(path)){
+            doTypeBillByMonth(request, response, statisticalService, map);
+        } else if ("/oneBillByYear".equals(path)){
+            doOneBillByYear(request, response, statisticalService, map);
+        } else if ("/allBillByYear".equals(path)){
+            doAllBillByYear(request, response, statisticalService, map);
+        } else if ("/typeBillByYear".equals(path)){
+            doTypeBillByYear(request, response, statisticalService, map);
+        }
+    }
+
+    /**
+     * 按年为单位，统计某种消费类型的消费总额。
+     * @param request
+     * @param response
+     * @param statisticalService
+     * @param map
+     */
+    private void doTypeBillByYear(HttpServletRequest request, HttpServletResponse response, StatisticalService statisticalService, HashMap<String, Object> map) {
+        try {
+            map = statisticalService.selectTypeBillByYear();
+            if (map.get("data") != null) {
+                request.setAttribute("data", map.get("data"));
+
+                request.getRequestDispatcher("/WEB-INF/statistical/" + request.getParameter("f") + ".jsp").forward(request, response);
+            }
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *  按年为单位，统计整个家庭的消费总额。
+     * @param request
+     * @param response
+     * @param statisticalService
+     * @param map
+     */
+    private void doAllBillByYear(HttpServletRequest request, HttpServletResponse response, StatisticalService statisticalService, HashMap<String, Object> map) {
+        try {
+            map = statisticalService.selectAllBillByYear();
+            if (map.get("data") != null) {
+                request.setAttribute("data", map.get("data"));
+
+                request.getRequestDispatcher("/WEB-INF/statistical/" + request.getParameter("f") + ".jsp").forward(request, response);
+            }
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 按年为单位，统计某个家庭成员的消费总额。
+     * @param request
+     * @param response
+     * @param statisticalService
+     * @param map
+     */
+    private void doOneBillByYear(HttpServletRequest request, HttpServletResponse response, StatisticalService statisticalService, HashMap<String, Object> map) {
+        String memNo = request.getParameter("memNo"); // 家庭成员编号
+        try {
+            map = statisticalService.selectOneBillByYear(memNo);
+            if (map.get("data") != null) {
+                request.setAttribute("data", map.get("data"));
+
+                request.getRequestDispatcher("/WEB-INF/statistical/" + request.getParameter("f") + ".jsp").forward(request, response);
+            }
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 按月为单位，统计某种消费类型的消费总额。
+     * @param request
+     * @param response
+     * @param statisticalService
+     * @param map
+     */
+    private void doTypeBillByMonth(HttpServletRequest request, HttpServletResponse response, StatisticalService statisticalService, HashMap<String, Object> map) {
+        //String billType = request.getParameter("billType");
+        try {
+            map = statisticalService.selectTypeBillByMonth();
+            if (map.get("data") != null) {
+                request.setAttribute("data", map.get("data"));
+
+                request.getRequestDispatcher("/WEB-INF/statistical/" + request.getParameter("f") + ".jsp").forward(request, response);
+            }
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

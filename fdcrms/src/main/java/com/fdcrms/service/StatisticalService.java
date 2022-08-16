@@ -22,4 +22,31 @@ public interface StatisticalService {
      * @return
      */
     HashMap<String, Object> selectAllBillByMonth() throws SQLException, ClassNotFoundException;
+
+    /**
+     * 按月为单位，统计某种消费类型的消费总额。
+     * @return
+     */
+    HashMap<String, Object> selectTypeBillByMonth() throws SQLException, ClassNotFoundException;
+
+    /**
+     * 按年为单位，统计某个家庭成员的消费总额。
+     * @param memNo
+     * @return
+     */
+    HashMap<String, Object> selectOneBillByYear(String memNo) throws SQLException, ClassNotFoundException;
+
+    /**
+     *  按年为单位，统计整个家庭的消费总额。
+     * @return
+     */
+    HashMap<String, Object> selectAllBillByYear() throws SQLException, ClassNotFoundException;
+
+    /**
+     * 按年为单位，统计某种消费类型的消费总额。
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    HashMap<String, Object> selectTypeBillByYear() throws SQLException, ClassNotFoundException;
 }

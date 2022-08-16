@@ -53,7 +53,7 @@ public class StatisticalServiceImpl  implements StatisticalService {
         // 1、调用StatisticalDao对应方法，查询结果
         List<Map<String, Object>> maps = statisticalDao.selectAllBillByMonth();
 
-        // 4、封装处理结果
+        // 2、封装处理结果
         HashMap<String, Object> map = new HashMap<>();
         if (maps.size() > 0) {
             map.put("code",200);
@@ -62,6 +62,92 @@ public class StatisticalServiceImpl  implements StatisticalService {
         } else {
             map.put("code",200);
             map.put("msg","家庭月消费总额查询失败");
+            map.put("data",null);
+        }
+
+        return map;
+    }
+
+    @Override
+    public HashMap<String, Object> selectTypeBillByMonth() throws SQLException, ClassNotFoundException {
+        // 1、调用StatisticalDao对应方法，查询结果
+        List<Map<String, Object>> maps = statisticalDao.selectTypeBillByMonth();
+
+        // 2、封装处理结果
+        HashMap<String, Object> map = new HashMap<>();
+        if (maps.size() > 0) {
+            map.put("code",200);
+            map.put("msg","家庭各项月消费总额查询成功");
+            map.put("data",maps);
+        } else {
+            map.put("code",200);
+            map.put("msg","家庭各项月消费总额查询失败");
+            map.put("data",null);
+        }
+
+        return map;
+    }
+
+    @Override
+    public HashMap<String, Object> selectOneBillByYear(String memNo) throws SQLException, ClassNotFoundException {
+        // 1、转换参数
+        Integer memNoToInt = Integer.valueOf(memNo);
+
+        // 2、通过家庭成员编号查找此家庭成员
+        Member member = memberDao.selectById(memNoToInt);
+
+        // 3、传入查到的member对象，查询此家庭成员的月度消费账单
+        List<Map<String, Object>> maps = statisticalDao.selectOneBillByYear(member);
+
+        // 4、封装处理结果
+        HashMap<String, Object> map = new HashMap<>();
+        if (maps.size() > 0) {
+            map.put("code",200);
+            map.put("msg","个人月消费总额查询成功");
+            map.put("data",maps);
+        } else {
+            map.put("code",200);
+            map.put("msg","个人月消费总额查询失败");
+            map.put("data",null);
+        }
+
+        return map;
+    }
+
+    @Override
+    public HashMap<String, Object> selectAllBillByYear() throws SQLException, ClassNotFoundException {
+        // 1、调用StatisticalDao对应方法，查询结果
+        List<Map<String, Object>> maps = statisticalDao.selectAllBillByYear();
+
+        // 2、封装处理结果
+        HashMap<String, Object> map = new HashMap<>();
+        if (maps.size() > 0) {
+            map.put("code",200);
+            map.put("msg","家庭月消费总额查询成功");
+            map.put("data",maps);
+        } else {
+            map.put("code",200);
+            map.put("msg","家庭月消费总额查询失败");
+            map.put("data",null);
+        }
+
+        return map;
+    }
+
+    @Override
+    public HashMap<String, Object> selectTypeBillByYear() throws SQLException, ClassNotFoundException {
+        // 1、调用StatisticalDao对应方法，查询结果
+        List<Map<String, Object>> maps = statisticalDao.selectTypeBillByYear();
+
+        // 2、封装处理结果
+        HashMap<String, Object> map = new HashMap<>();
+        if (maps.size() > 0) {
+            map.put("code",200);
+            map.put("msg","家庭各项月消费总额查询成功");
+            map.put("data",maps);
+        } else {
+            map.put("code",200);
+            map.put("msg","家庭各项月消费总额查询失败");
             map.put("data",null);
         }
 
