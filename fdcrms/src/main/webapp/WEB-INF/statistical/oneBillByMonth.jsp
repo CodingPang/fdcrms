@@ -18,21 +18,13 @@
     </tr>
 
 
-    <c:forEach items="${memberMap}" var="data" varStatus="memStatus">
+    <c:forEach items="${data}" var="data" varStatus="status">
         <tr>
-            <td>${billStatus.count}</td>
-            <td>${data.memNo}</td>
-            <td>${data.memName}</td>
-            <td>${data.memPhone}</td>
-            <td>${data.memGender}</td>
-            <td>${data.memAge}</td>
-            <td>
-                <a href="javascript:void(0)" onclick="del(${data.memNo})" >删除</a>
-                <a href="member/detail?f=edit&memNo=${data.memNo}">修改</a>
-                <a href="member/detail?f=detail&memNo=${data.memNo}">详情</a>
-                <a href="member/oneMemBill?f=month&memNo=${data.memNo}">个人月费账单</a>
-                <a href="member/oneMemBill?f=year&memNo=${data.memNo}">个人年费账单</a>
-            </td>
+            <td>${status.count}</td>
+            <td>${data.bill_consumer}</td>
+            <%-- 切记el表达式中通过key取特殊值  用 []  --%>
+            <td>${data['MONTH(bill_date)']}</td>
+            <td>${data['SUM(bill_money)']}</td>
         </tr>
     </c:forEach>
 

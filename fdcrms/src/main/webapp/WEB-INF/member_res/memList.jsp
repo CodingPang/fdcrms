@@ -66,8 +66,8 @@
                 <a href="javascript:void(0)" onclick="del(${data.memNo})" >删除</a>
                 <a href="member/detail?f=edit&memNo=${data.memNo}">修改</a>
                 <a href="member/detail?f=detail&memNo=${data.memNo}">详情</a>
-                <a href="member/oneMemBill?f=month&memNo=${data.memNo}">个人月费账单</a>
-                <a href="member/oneMemBill?f=year&memNo=${data.memNo}">个人年费账单</a>
+                <a href="statistical/oneBillByMonth?f=oneBillByMonth&memNo=${data.memNo}">个人月费账单</a>
+<%--                <a href="statistical/oneMemBill?f=year&memNo=${data.memNo}">个人年费账单</a>--%>
             </td>
         </tr>
     </c:forEach>
