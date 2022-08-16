@@ -17,7 +17,6 @@ public interface StatisticalDao {
 
     /**
      * 按月为单位，统计某个家庭成员的消费总额。
-     * 按月为单位，统计整个家庭的消费总额。
      * 按月为单位，统计某种消费类型的消费总额。
      * 按月为单位，统计某个家庭成员某种消费类型的消费总额。
      * 按年为单位，统计某个家庭成员的消费总额。
@@ -28,4 +27,10 @@ public interface StatisticalDao {
      * @return
      */
     List<Map<String, Object>> selectOneBillByMonth(Member member) throws SQLException, ClassNotFoundException;
+
+    /**
+     * 按月为单位，统计整个家庭的消费总额。
+     * @return
+     */
+    List<Map<String, Object>> selectAllBillByMonth() throws SQLException, ClassNotFoundException;
 }

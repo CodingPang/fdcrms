@@ -21,10 +21,10 @@
     <c:forEach items="${data}" var="data" varStatus="status">
         <tr>
             <td>${status.count}</td>
-            <td>${data.bill_consumer}</td>
+            <td>${data.consumer}</td>
             <%-- 切记el表达式中通过key取特殊值  用 []  --%>
-            <td>${data['MONTH(bill_date)']}</td>
-            <td>${data['SUM(bill_money)']}</td>
+            <td>${data['inMonth']}</td>
+            <td>${data['allConsume']}</td>
         </tr>
     </c:forEach>
 

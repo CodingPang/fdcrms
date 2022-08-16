@@ -16,4 +16,10 @@ public interface StatisticalService {
      * @return
      */
     HashMap<String, Object> selectOneBillByMonth(String memNo) throws SQLException, ClassNotFoundException;
+
+    /**
+     * 按月为单位，统计整个家庭的消费总额。
+     * @return
+     */
+    HashMap<String, Object> selectAllBillByMonth() throws SQLException, ClassNotFoundException;
 }

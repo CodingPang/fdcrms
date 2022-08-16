@@ -33,6 +33,34 @@ public class StatisticalServlet extends HttpServlet {
         HashMap<String, Object> map = null;
         if ("/oneBillByMonth".equals(path)) {
             doOneBillByMonth(request, response, statisticalService, map);
+        } else if ("/allBillByMonth".equals(path)){
+            doAllBillByMonth(request, response, statisticalService, map);
+        }
+    }
+
+    /**
+     * 按月为单位，统计整个家庭的消费总额。
+     * @param request
+     * @param response
+     * @param statisticalService
+     * @param map
+     */
+    private void doAllBillByMonth(HttpServletRequest request, HttpServletResponse response, StatisticalService statisticalService, HashMap<String, Object> map) {
+        try {
+            map = statisticalService.selectAllBillByMonth();
+            if (map.get("data") != null) {
+                request.setAttribute("data", map.get("data"));
+
+                request.getRequestDispatcher("/WEB-INF/statistical/" + request.getParameter("f") + ".jsp").forward(request, response);
+            }
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

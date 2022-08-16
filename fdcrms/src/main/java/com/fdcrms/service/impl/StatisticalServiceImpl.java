@@ -46,4 +46,25 @@ public class StatisticalServiceImpl  implements StatisticalService {
 
         return map;
     }
+
+    @Override
+    public HashMap<String, Object> selectAllBillByMonth() throws SQLException, ClassNotFoundException {
+
+        // 1、调用StatisticalDao对应方法，查询结果
+        List<Map<String, Object>> maps = statisticalDao.selectAllBillByMonth();
+
+        // 4、封装处理结果
+        HashMap<String, Object> map = new HashMap<>();
+        if (maps.size() > 0) {
+            map.put("code",200);
+            map.put("msg","家庭月消费总额查询成功");
+            map.put("data",maps);
+        } else {
+            map.put("code",200);
+            map.put("msg","家庭月消费总额查询失败");
+            map.put("data",null);
+        }
+
+        return map;
+    }
 }
