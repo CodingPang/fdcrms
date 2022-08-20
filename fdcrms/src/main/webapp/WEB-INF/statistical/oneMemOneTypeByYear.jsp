@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>按年为单位，统计某种消费类型的消费总额</title>
+    <title>按年为单位，统计某个家庭成员某种消费类型的消费总额。</title>
 </head>
 <body>
-<h1 align="center">本家庭各项消费年总账单</h1>
+<h1 align="center">${data.get(0)["bill_consumer"]}&nbsp;&nbsp;&nbsp;&nbsp;的&nbsp;&nbsp;&nbsp;&nbsp;${data.get(0)["bill_type"]}&nbsp;&nbsp;&nbsp;&nbsp;年消费总额一览</h1>
 <hr >
 <table border="1px" align="center" width="50%">
     <tr>

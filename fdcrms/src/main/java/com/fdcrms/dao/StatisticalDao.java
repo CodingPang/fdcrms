@@ -17,6 +17,7 @@ public interface StatisticalDao {
 
     /**
      * 按月为单位，统计某个家庭成员的消费总额。
+     *
      * @param member
      * @return
      */
@@ -24,34 +25,67 @@ public interface StatisticalDao {
 
     /**
      * 按月为单位，统计整个家庭的消费总额。
+     *
      * @return
      */
     List<Map<String, Object>> selectAllBillByMonth() throws SQLException, ClassNotFoundException;
 
     /**
      * 按月为单位，统计某种消费类型的消费总额。
+     *
      * @return
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    List<Map<String, Object>> selectTypeBillByMonth() throws SQLException, ClassNotFoundException;;
+    List<Map<String, Object>> selectTypeBillByMonth() throws SQLException, ClassNotFoundException;
+
+    ;
 
     /**
      * 按年为单位，统计某个家庭成员的消费总额。
+     *
      * @param member
      * @return
      */
     List<Map<String, Object>> selectOneBillByYear(Member member) throws SQLException, ClassNotFoundException;
 
     /**
-     *  按年为单位，统计整个家庭的消费总额。
+     * 按年为单位，统计整个家庭的消费总额。
+     *
      * @return
      */
     List<Map<String, Object>> selectAllBillByYear() throws SQLException, ClassNotFoundException;
 
     /**
      * 按年为单位，统计某种消费类型的消费总额。
+     *
      * @return
      */
     List<Map<String, Object>> selectTypeBillByYear() throws SQLException, ClassNotFoundException;
+
+    /**
+     * 通过家庭成员编号查找此家庭成员的所有消费类型
+     *
+     * @param memNoToInt 家庭成员编号
+     * @return
+     */
+    List<Map<String, Object>> selectOneMemAllType(Integer memNoToInt) throws SQLException, ClassNotFoundException;
+
+    /**
+     * 按月为单位，统计某个家庭成员某种消费类型的消费总额。
+     *
+     * @param member
+     * @param billType
+     * @return
+     */
+    List<Map<String, Object>> selectOneMemOneTypeByMonth(Member member, String billType) throws SQLException, ClassNotFoundException;
+
+    /**
+     * 按年为单位，统计某个家庭成员某种消费类型的消费总额。
+     *
+     * @param member
+     * @param billType
+     * @return
+     */
+    List<Map<String, Object>> selectOneMemOneTypeByYear(Member member, String billType) throws SQLException, ClassNotFoundException;
 }

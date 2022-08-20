@@ -32,16 +32,36 @@ public class pageServlet extends HttpServlet {
             toBillAdd(request,response);
         } else if ("/memAdd".equals(path)){
             toMemAdd(request,response);
+        } else if ("/toOneMemOneTypeByMonth".equals(path)) {
+            toOneMemOneTypeByMonth(request, response);
         }
     }
 
     /**
-     * 重定向到注册页面
+     * 带参转发到OneMemOneTypeByMonth.jsp
+     * @param request
+     * @param response
+     */
+    private void toOneMemOneTypeByMonth(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            /*String data = request.getParameter("data");
+
+            request.setAttribute("data",data);*/
+            request.getRequestDispatcher("/WEB-INF/statistical/oneMemOneTypeByMonth.jsp").forward(request,response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 转发到注册页面
      * @param request
      * @param response
      */
     private void toMemRegister(HttpServletRequest request, HttpServletResponse response) {
-        // 重定向到注册页面
+        // 转发到注册页面
         String contextPath = request.getContextPath();
         try {
            // response.sendRedirect(contextPath + "/register.jsp");

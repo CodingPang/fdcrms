@@ -72,4 +72,6 @@ public interface MemberDao {
      * @return
      */
     int deleteById(Integer memNo) throws SQLException, ClassNotFoundException;
+
+
 }

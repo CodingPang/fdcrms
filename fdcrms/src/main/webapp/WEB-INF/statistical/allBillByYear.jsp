@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--注意：当jstl标签发生重名，IDEA2022不会"以最新覆盖旧的正常执行代码，IDEA2022会报错，2021正常执行，为了不给小白挖坑，特注释并郑重警告"--%>
+<%--<%@taglib prefix="" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>

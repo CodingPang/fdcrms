@@ -5,13 +5,17 @@ package com.fdcrms.controller; /**
  * Version: V1.0
  */
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fdcrms.service.StatisticalService;
 import com.fdcrms.service.impl.StatisticalServiceImpl;
+import com.fdcrms.util.ServletJsonHandler;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.HashMap;
 
@@ -43,6 +47,103 @@ public class StatisticalServlet extends HttpServlet {
             doAllBillByYear(request, response, statisticalService, map);
         } else if ("/typeBillByYear".equals(path)){
             doTypeBillByYear(request, response, statisticalService, map);
+        } else if ("/OneMemAllType".equals(path)){
+            doOneMemAllType(request, response, statisticalService, map);
+        } else if ("/OneMemOneTypeByMonth".equals(path)){
+            doOneMemOneTypeByMonth(request, response, statisticalService, map);
+        } else if ("/OneMemOneTypeByYear".equals(path)){
+            doOneMemOneTypeByYear(request, response, statisticalService, map);
+        }
+    }
+
+    /**
+     * 按年为单位，统计某个家庭成员某种消费类型的消费总额。
+     * @param request
+     * @param response
+     * @param statisticalService
+     * @param map
+     */
+    private void doOneMemOneTypeByYear(HttpServletRequest request, HttpServletResponse response, StatisticalService statisticalService, HashMap<String, Object> map) {
+        String memNo = request.getParameter("memNo");
+        String billType = request.getParameter("billType");
+        try {
+            map = statisticalService.selectOneMemOneTypeByYear(memNo,billType);
+            if (map.get("data") != null) {
+                request.setAttribute("data", map.get("data"));
+                System.out.println("某人的某项年消费总额====>"+map.get("data"));
+                request.getRequestDispatcher("/WEB-INF/statistical/oneMemOneTypeByYear.jsp").forward(request,response);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 按月为单位，统计某个家庭成员某种消费类型的消费总额。
+     * @param request
+     * @param response
+     * @param statisticalService
+     * @param map
+     */
+    private void doOneMemOneTypeByMonth(HttpServletRequest request, HttpServletResponse response, StatisticalService statisticalService, HashMap<String, Object> map) {
+        String memNo = request.getParameter("memNo");
+        String billType = request.getParameter("billType");
+        try {
+            map = statisticalService.selectOneMemOneTypeByMonth(memNo,billType);
+            if (map.get("data") != null) {
+                request.setAttribute("data", map.get("data"));
+                System.out.println("某人的某项月消费总额====>"+map.get("data"));
+                request.getRequestDispatcher("/WEB-INF/statistical/oneMemOneTypeByMonth.jsp").forward(request,response);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 查询某个用户的所有消费类型
+     * @param request
+     * @param response
+     * @param statisticalService
+     * @param map
+     */
+    private void doOneMemAllType(HttpServletRequest request, HttpServletResponse response, StatisticalService statisticalService, HashMap<String, Object> map) {
+        // String json_str = ServletJsonHandler.ReadAsChars(request); // 调用工具类读取json字符串
+        // System.out.println(json_str);
+        String memNo = request.getParameter("memNo");
+        System.out.println("memNo====>" + memNo);
+        try {
+            // Json字符串转换为Json
+             ObjectMapper mapper = new ObjectMapper(); // 获取jackson对象
+            // JsonNode node = mapper.readTree(json_str); // json字符串转换为json树对象
+            // String memNo = node.get("memNo").asText(); // 通过name获取value
+            map = statisticalService.selectOneMemAllType(memNo);
+            if (map.get("data") != null) {
+                String json = mapper.writeValueAsString(map.get("data"));
+                System.out.println(json);
+                PrintWriter out = response.getWriter();
+                out.println(json);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

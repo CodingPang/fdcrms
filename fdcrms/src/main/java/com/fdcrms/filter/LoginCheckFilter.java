@@ -41,7 +41,7 @@ public class LoginCheckFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
         //post请求乱码问题
         request.setCharacterEncoding("UTF-8");
-        //响应中文乱码问题
+        //响应中文乱码问题(此处相当于全局配置了text/html，对于json格式，可能有坑)
         response.setContentType("text/html;charset=UTF-8");
 
         // 获取请求路径

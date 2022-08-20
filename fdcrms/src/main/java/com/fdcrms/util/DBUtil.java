@@ -14,10 +14,14 @@ import java.util.ResourceBundle;
     // 静态变量：在类加载时执行。
     // 并且是有顺序的。自上而下的顺序。
 
-    private static String driver = "com.mysql.jdbc.Driver";
-    private static String url = "jdbc:mysql://localhost:3307/fdcrms?useSSL=false&characterEncoding=utf-8&serverTimezone=UTC";
-    private static String user = "root";
-    private static String password = "123456";
+    // 注意： ResourceBundle.getBundle(); 传入的参数应该为：target/classes下的配置文件名，且不能带有后缀名，否则发生异常：java.util.MissingResourceException: Can't find bundle for base name xxx, locale zh_CN
+    // 比如： private static ResourceBundle bundle = ResourceBundle.getBundle("resources.jdbc"); 发生异常：java.util.MissingResourceException: Can't find bundle for base name resources.jdbc, locale zh_CN
+    private static ResourceBundle bundle = ResourceBundle.getBundle("jdbc");
+    // 根据属性配置文件的key获取value
+    private static String driver = bundle.getString("driver");
+    private static String url = bundle.getString("url");
+    private static String user = bundle.getString("user");
+    private static String password = bundle.getString("password");
     private static Connection conn = null; // 数据库连接对象
     private static PreparedStatement ps = null; // 预编译对象
     private static ResultSet resultSet = null; // 查询结果集对象
