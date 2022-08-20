@@ -2,7 +2,11 @@
 
 家庭管理系统---servlet版提交
 
-采用技术栈：Servlet + JSP + MySQL + JDBC + HTML + CSS + JavaScript
+采用技术栈：Servlet + JSP + MySQL + JDBC + HTML + CSS + JavaScript + AJAX
+
+部署：Tomcat9.0.6
+
+构建：Maven
 
 目前已经实现功能：
 
