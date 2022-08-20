@@ -2,7 +2,7 @@
 
 家庭管理系统---servlet版提交
 
-采用技术栈：Servlet + JSP + MySQL + JDBC + HTML + CSS + JavaScript + AJAX
+采用技术栈：Servlet + JSP + MySQL + JDBC + HTML + CSS + JavaScript + Jquery + AJAX
 
 部署：Tomcat9.0.6
 
@@ -44,4 +44,6 @@
   
   按年为单位，统计某个家庭成员某种消费类型的消费总额
   
+计划更新：
+  采用bootstrap3重构前端页面
 
