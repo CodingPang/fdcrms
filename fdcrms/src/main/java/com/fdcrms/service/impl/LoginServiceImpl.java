@@ -118,7 +118,7 @@ public class LoginServiceImpl implements LoginService {
         }
 
 
-        if (!RegexUtils.isLegalName(memPhone)){ // 姓名格式校验
+        if (!RegexUtils.isLegalName(memName)){ // 姓名格式校验
             map.put("code",202);
             map.put("msg", "姓名格式不正确");
             return map;

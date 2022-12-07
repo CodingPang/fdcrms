@@ -69,7 +69,7 @@ public class ConstUtils {
     /**
      * 正则：用户名，取值范围为a-z,A-Z,0-9,"_",汉字，不能以"_"结尾,用户名必须是6-20位
      */
-    public static final String REGEX_USERNAME      = "^[\\w\\u4e00-\\u9fa5]{6,20}(?<!_)$";
+    public static final String REGEX_USERNAME      = "^[A-Za-z\\u4e00-\\u9fa5]{1,}$";
     /**
      * 正则：真实姓名（包括少数民族）
      * 验证规则是：姓名由汉字或汉字加“•”或"·"组成，而且，“点”只能有一个，“点”的位置不能在首位也不能在末尾，只有在汉字之间才会验证通过。
